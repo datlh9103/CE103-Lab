@@ -1,0 +1,125 @@
+A51 MACRO ASSEMBLER  LEHUUDAT_21520697_LAB3                                               05/15/2023 09:32:46 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\LeHuuDat-21520697-Lab3.obj
+ASSEMBLER INVOKED BY: E:\KeilC\C51\BIN\A51.EXE LeHuuDat-21520697-Lab3.asm SET(SMALL) DEBUG PRINT(.\Listings\LeHuuDat-215
+                      20697-Lab3.lst) OBJECT(.\Objects\LeHuuDat-21520697-Lab3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+0000 8013              2             SJMP MAIN
+0003                   3     ORG 0003H
+0003 806E              4             SJMP BUTTON_A
+0013                   5     ORG 0013H
+0013 806A              6             SJMP BUTTON_B
+0015                   7     MAIN:
+0015 7800              8             MOV R0, #0
+0017 7900              9             MOV R1, #0
+0019 75A885           10             MOV IE, #85H
+001C 1120             11             CALL CLOCK
+001E 80F5             12             JMP MAIN
+0020                  13     CLOCK:
+0020 113D             14             CALL HIENTHI
+0022 20B404           15             JB P3.4, NEXT
+0025 30B4FD           16             JNB P3.4, $
+0028 08               17             INC R0
+0029                  18     NEXT:
+0029 20B504           19             JB P3.5, NEXT1
+002C 30B5FD           20             JNB P3.5, $
+002F 18               21             DEC R0
+0030                  22     NEXT1:
+0030 09               23             INC R1
+0031 B964EC           24             CJNE R1, #100, CLOCK
+0034 08               25             INC R0
+0035 7900             26             MOV R1, #0
+0037 B864E6           27             CJNE R0, #100, CLOCK
+003A 7800             28             MOV R0, #0
+003C 22               29             RET
+003D                  30     HIENTHI:
+003D 90008D           31             MOV DPTR, #MALED
+0040 E8               32             MOV A, R0
+0041 75F00A           33             MOV B, #10
+0044 84               34             DIV AB
+0045 93               35             MOVC A, @A + DPTR
+0046 F580             36             MOV P0, A
+0048 D2A0             37             SETB P2.0
+004A 1184             38             CALL DELAY
+004C C2A0             39             CLR P2.0
+004E E5F0             40             MOV A, B
+0050 93               41             MOVC A, @A + DPTR
+0051 F580             42             MOV P0, A
+0053 D2A1             43             SETB P2.1
+0055 1184             44             CALL DELAY
+0057 C2A1             45             CLR P2.1
+                      46                     
+0059 E9               47             MOV A, R1
+005A 75F00A           48             MOV B, #10
+005D 84               49             DIV AB
+005E 93               50             MOVC A, @A + DPTR
+005F F580             51             MOV P0, A
+0061 D2A2             52             SETB P2.2
+0063 1184             53             CALL DELAY
+0065 C2A2             54             CLR P2.2
+0067 E5F0             55             MOV A, B
+0069 93               56             MOVC A, @A + DPTR
+006A F580             57             MOV P0, A
+A51 MACRO ASSEMBLER  LEHUUDAT_21520697_LAB3                                               05/15/2023 09:32:46 PAGE     2
+
+006C D2A3             58             SETB P2.3
+006E 1184             59             CALL DELAY
+0070 C2A3             60             CLR P2.3
+0072 22               61             RET
+0073                  62     BUTTON_A:
+0073 30B2FD           63             JNB P3.2, $
+0076                  64     LOOP:
+0076 113D             65             CALL HIENTHI
+0078 20B2FB           66             JB P3.2, LOOP
+007B 30B2FD           67             JNB P3.2, $ 
+007E 32               68             RETI
+007F                  69     BUTTON_B:
+007F 7800             70             MOV R0, #0
+0081 7900             71             MOV R1, #0
+0083 32               72             RETI
+0084                  73     DELAY:
+0084 7A05             74             MOV R2, #5
+0086                  75     DELAY1:
+0086 7BF6             76             MOV R3, #246
+0088 DBFE             77             DJNZ R3, $
+008A DAFA             78             DJNZ R2, DELAY1
+008C 22               79             RET
+008D C0F9A4B0         80     MALED: DB 0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90
+0091 999282F8                
+0095 8090                    
+                      81     END
+A51 MACRO ASSEMBLER  LEHUUDAT_21520697_LAB3                                               05/15/2023 09:32:46 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+BUTTON_A . . . . .  C ADDR   0073H   A   
+BUTTON_B . . . . .  C ADDR   007FH   A   
+CLOCK. . . . . . .  C ADDR   0020H   A   
+DELAY. . . . . . .  C ADDR   0084H   A   
+DELAY1 . . . . . .  C ADDR   0086H   A   
+HIENTHI. . . . . .  C ADDR   003DH   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+LOOP . . . . . . .  C ADDR   0076H   A   
+MAIN . . . . . . .  C ADDR   0015H   A   
+MALED. . . . . . .  C ADDR   008DH   A   
+NEXT . . . . . . .  C ADDR   0029H   A   
+NEXT1. . . . . . .  C ADDR   0030H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,115 @@
+A51 MACRO ASSEMBLER  LAB2_21520697_LEHUUDAT                                               05/15/2023 10:25:58 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Lab2-21520697-LeHuuDat.obj
+ASSEMBLER INVOKED BY: E:\KeilC\C51\BIN\A51.EXE Lab2-21520697-LeHuuDat.asm SET(SMALL) DEBUG PRINT(.\Listings\Lab2-2152069
+                      7-LeHuuDat.lst) OBJECT(.\Objects\Lab2-21520697-LeHuuDat.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+                       3     
+                       4     
+                       5     
+0000                   6     ORG 00H
+0000 7817              7     MOV R0, #23
+0002 793A              8     MOV R1, #58
+0004 7A00              9     MOV R2, #0
+0006                  10     MAIN:
+                      11             
+                      12             
+0006 110A             13             CALL CLOCK
+0008 80FC             14             JMP MAIN
+000A                  15     CLOCK:
+000A 111F             16             CALL HIENTHI
+000C 0A               17             INC R2
+000D BA3CFA           18             CJNE R2, #60, CLOCK
+0010 09               19             INC R1
+0011 7A00             20             MOV R2, #0
+0013 B93CF4           21             CJNE R1, #60, CLOCK
+0016 08               22             INC R0
+0017 7900             23             MOV R1, #0
+0019 B818EE           24             CJNE R0, #24, CLOCK
+001C 7800             25             MOV R0, #0
+001E 22               26             RET
+001F                  27     HIENTHI:
+001F 900070           28             MOV DPTR, #MALED
+0022 7B32             29             MOV R3, #50
+0024                  30             HT1:
+0024 E8               31                     MOV A, R0
+0025 75F00A           32                     MOV B, #10
+0028 84               33                     DIV AB
+0029 93               34                     MOVC A, @A + DPTR
+002A F580             35                     MOV P0, A
+002C D2B0             36                     SETB P3.0
+002E 115D             37                     CALL TIMER
+0030 C2B0             38                     CLR P3.0
+0032 E5F0             39                     MOV A, B
+0034 93               40                     MOVC A, @A + DPTR
+0035 F580             41                     MOV P0, A
+0037 C287             42                     CLR P0.7
+0039 D2B1             43                     SETB P3.1
+003B 115D             44                     CALL TIMER
+003D C2B1             45                     CLR P3.1
+003F D287             46                     SETB P0.7
+0041 E9               47                     MOV A, R1
+0042 75F00A           48                     MOV B, #10
+0045 84               49                     DIV AB
+0046 93               50                     MOVC A, @A + DPTR
+0047 F580             51                     MOV P0, A
+0049 D2B2             52                     SETB P3.2
+004B 115D             53                     CALL TIMER
+004D C2B2             54                     CLR P3.2
+004F E5F0             55                     MOV A, B
+0051 93               56                     MOVC A, @A + DPTR
+0052 F580             57                     MOV P0, A
+A51 MACRO ASSEMBLER  LAB2_21520697_LEHUUDAT                                               05/15/2023 10:25:58 PAGE     2
+
+0054 D2B3             58                     SETB P3.3
+0056 115D             59                     CALL TIMER
+0058 C2B3             60                     CLR P3.3
+005A DBC8             61                     DJNZ R3, HT1
+005C 22               62             RET
+005D                  63     TIMER:
+005D 758901           64             MOV TMOD, #01H
+0060 758CEC           65             MOV TH0, #0xEC
+0063 758A77           66             MOV TL0, #77H
+0066 D28C             67             SETB TR0
+0068 308DFD           68             JNB TF0, $
+006B C28C             69             CLR TR0
+006D C28D             70             CLR TF0
+006F 22               71             RET
+0070 C0F9A4B0         72     MALED: DB 0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90
+0074 999282F8                
+0078 8090                    
+                      73             END
+A51 MACRO ASSEMBLER  LAB2_21520697_LEHUUDAT                                               05/15/2023 10:25:58 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+CLOCK. . . . . . .  C ADDR   000AH   A   
+HIENTHI. . . . . .  C ADDR   001FH   A   
+HT1. . . . . . . .  C ADDR   0024H   A   
+MAIN . . . . . . .  C ADDR   0006H   A   
+MALED. . . . . . .  C ADDR   0070H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TIMER. . . . . . .  C ADDR   005DH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

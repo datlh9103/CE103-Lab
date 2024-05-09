@@ -1,0 +1,107 @@
+A51 MACRO ASSEMBLER  LAB2_21520697_LEHUUDAT_DELAY                                         04/13/2023 22:49:18 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Lab2-21520697-LeHuuDat-Delay.obj
+ASSEMBLER INVOKED BY: E:\Keil C\C51\BIN\A51.EXE Lab2-21520697-LeHuuDat-Delay.asm SET(SMALL) DEBUG PRINT(.\Listings\Lab2-
+                      21520697-LeHuuDat-Delay.lst) OBJECT(.\Objects\Lab2-21520697-LeHuuDat-Delay.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+                       3     
+                       4     
+                       5     
+0000                   6     ORG 00H
+0000 7817              7     MOV R0, #23
+0002 793A              8     MOV R1, #58
+0004 7A00              9     MOV R2, #0
+0006                  10     MAIN:
+0006 110A             11             CALL CLOCK
+0008 80FC             12             JMP MAIN
+000A                  13     CLOCK:
+000A 111F             14             CALL HIENTHI
+000C 0A               15             INC R2
+000D BA3CFA           16             CJNE R2, #60, CLOCK
+0010 09               17             INC R1
+0011 7A00             18             MOV R2, #0
+0013 B93CF4           19             CJNE R1, #60, CLOCK
+0016 08               20             INC R0
+0017 7900             21             MOV R1, #0
+0019 B818EE           22             CJNE R0, #24, CLOCK
+001C 7800             23             MOV R0, #0
+001E 22               24             RET
+001F                  25     HIENTHI:
+001F 900066           26             MOV DPTR, #MALED
+0022 7B19             27             MOV R3, #25
+0024                  28             HT1:
+0024 E8               29                     MOV A, R0
+0025 75F00A           30                     MOV B, #10
+0028 84               31                     DIV AB
+0029 93               32                     MOVC A, @A + DPTR
+002A F580             33                     MOV P0, A
+002C D2B0             34                     SETB P3.0
+002E 115D             35                     CALL DELAY
+0030 C2B0             36                     CLR P3.0
+0032 E5F0             37                     MOV A, B
+0034 93               38                     MOVC A, @A + DPTR
+0035 F580             39                     MOV P0, A
+0037 C287             40                     CLR P0.7
+0039 D2B1             41                     SETB P3.1
+003B 115D             42                     CALL DELAY
+003D C2B1             43                     CLR P3.1
+003F D287             44                     SETB P0.7
+0041 E9               45                     MOV A, R1
+0042 75F00A           46                     MOV B, #10
+0045 84               47                     DIV AB
+0046 93               48                     MOVC A, @A + DPTR
+0047 F580             49                     MOV P0, A
+0049 D2B2             50                     SETB P3.2
+004B 115D             51                     CALL DELAY
+004D C2B2             52                     CLR P3.2
+004F E5F0             53                     MOV A, B
+0051 93               54                     MOVC A, @A + DPTR
+0052 F580             55                     MOV P0, A
+0054 D2B3             56                     SETB P3.3
+0056 115D             57                     CALL DELAY
+A51 MACRO ASSEMBLER  LAB2_21520697_LEHUUDAT_DELAY                                         04/13/2023 22:49:18 PAGE     2
+
+0058 C2B3             58                     CLR P3.3
+005A DBC8             59                     DJNZ R3, HT1
+005C 22               60             RET
+005D                  61     DELAY:
+005D 7C14             62             MOV R4, #20
+005F                  63     LOOP1:
+005F 7DFA             64             MOV R5, #250
+0061 DDFE             65             DJNZ R5, $
+0063 DCFA             66             DJNZ R4, LOOP1
+0065 22               67     RET
+0066 C0F9A4B0         68     MALED: DB 0XC0, 0XF9, 0XA4, 0XB0, 0X99, 0X92, 0X82, 0XF8, 0X80, 0X90
+006A 999282F8                
+006E 8090                    
+                      69             END
+A51 MACRO ASSEMBLER  LAB2_21520697_LEHUUDAT_DELAY                                         04/13/2023 22:49:18 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+CLOCK. . . . . . .  C ADDR   000AH   A   
+DELAY. . . . . . .  C ADDR   005DH   A   
+HIENTHI. . . . . .  C ADDR   001FH   A   
+HT1. . . . . . . .  C ADDR   0024H   A   
+LOOP1. . . . . . .  C ADDR   005FH   A   
+MAIN . . . . . . .  C ADDR   0006H   A   
+MALED. . . . . . .  C ADDR   0066H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

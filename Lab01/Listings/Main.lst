@@ -1,0 +1,115 @@
+A51 MACRO ASSEMBLER  MAIN                                                                 03/23/2023 18:32:05 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Main.obj
+ASSEMBLER INVOKED BY: E:\Keil C\C51\BIN\A51.EXE Main.asm SET(SMALL) DEBUG PRINT(.\Listings\Main.lst) OBJECT(.\Objects\Ma
+                      in.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     org 00h
+0000                   2     MAIN:
+0000 1108              3             CALL DELAYCT1
+0002 111A              4             CALL CT2
+0004 114C              5             CALL DELAYCT3
+0006 80F8              6             JMP MAIN
+0008                   7     DELAYCT1:
+0008 7B14              8     MOV R3, #20
+000A E5FF              9     MOV A, 11111111B
+000C                  10             CT1:
+000C F580             11                     MOV P0, A
+000E F590             12                     MOV P1, A
+0010 F5A0             13                     MOV P2, A
+0012 F5B0             14                     MOV P3, A
+0014 F4               15                     CPL A
+0015 115E             16                     CALL DELAY
+0017 DBF3             17     DJNZ R3, CT1
+0019 22               18     RET
+001A                  19     CT2:
+001A 74FF             20             MOV A, #11111111B
+001C C3               21             CLR C
+001D                  22             FOR0:
+001D 33               23                     RLC A
+001E F580             24                     MOV P0, A
+0020 F5B0             25                     MOV P3, A
+0022 115E             26                     CALL DELAY
+0024 B400F6           27                     CJNE A, #00000000B, FOR0
+0027 74FF             28                     MOV A, #11111111B
+0029                  29             FOR1:
+0029 33               30                     RLC A
+002A F590             31                     MOV P1, A
+002C F5A0             32                     MOV P2, A 
+002E 115E             33                     CALL DELAY
+0030 B400F6           34                     CJNE A, #00000000B, FOR1
+0033                  35             FOR2:
+0033 33               36                     RLC A
+0034 F580             37                     MOV P0, A
+0036 F5B0             38                     MOV P3, A
+0038 115E             39                     CALL DELAY
+003A B4FFF6           40                     CJNE A, #11111111B, FOR2
+003D 7400             41                     MOV A, #00000000B
+003F                  42             FOR3:
+003F 33               43                     RLC A
+0040 F590             44                     MOV P1, A
+0042 F5A0             45                     MOV P2, A 
+0044 115E             46                     CALL DELAY
+0046 B4FFF6           47                     CJNE A, #11111111B, FOR3
+0049 7400             48                     MOV A, #00000000B
+004B 22               49     RET
+004C                  50     DELAYCT3:
+004C 7B14             51             MOV R3, #20
+004E 7455             52             MOV A, #01010101B
+0050                  53     CT3:
+0050 F580             54             MOV P0, A
+0052 F590             55             MOV P1, A
+0054 03               56             RR A
+0055 F5A0             57             MOV P2, A
+A51 MACRO ASSEMBLER  MAIN                                                                 03/23/2023 18:32:05 PAGE     2
+
+0057 F5B0             58             MOV P3, A
+0059 115E             59             CALL DELAY
+005B DBF3             60             DJNZ R3, CT3
+005D 22               61     RET
+005E                  62     DELAY:
+005E 7805             63             MOV R0, #5
+0060                  64     LOOP1:
+0060 797D             65             MOV R1, #125
+0062                  66     LOOP2:
+0062 7AFA             67             MOV R2, #250
+0064 DAFE             68             DJNZ R2, $
+0066 D9FA             69             DJNZ R1, LOOP2
+0068 D8F6             70             DJNZ R0, LOOP1
+006A 22               71     RET
+                      72     END
+A51 MACRO ASSEMBLER  MAIN                                                                 03/23/2023 18:32:05 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CT1. . . . . . . .  C ADDR   000CH   A   
+CT2. . . . . . . .  C ADDR   001AH   A   
+CT3. . . . . . . .  C ADDR   0050H   A   
+DELAY. . . . . . .  C ADDR   005EH   A   
+DELAYCT1 . . . . .  C ADDR   0008H   A   
+DELAYCT3 . . . . .  C ADDR   004CH   A   
+FOR0 . . . . . . .  C ADDR   001DH   A   
+FOR1 . . . . . . .  C ADDR   0029H   A   
+FOR2 . . . . . . .  C ADDR   0033H   A   
+FOR3 . . . . . . .  C ADDR   003FH   A   
+LOOP1. . . . . . .  C ADDR   0060H   A   
+LOOP2. . . . . . .  C ADDR   0062H   A   
+MAIN . . . . . . .  C ADDR   0000H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,321 @@
+A51 MACRO ASSEMBLER  MAIN                                                                 05/29/2023 10:40:20 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\MAIN.obj
+ASSEMBLER INVOKED BY: E:\KeilC\C51\BIN\A51.EXE MAIN.asm SET(SMALL) DEBUG PRINT(.\Listings\MAIN.lst) OBJECT(.\Objects\MAI
+                      N.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+0000 758920            2             MOV TMOD, #20H
+0003 758DFD            3             MOV TH1, #0FDH
+0006 759850            4             MOV SCON, #50H
+0009 D28E              5             SETB TR1
+000B 78FF              6             MOV R0, #-1
+000D 79FF              7             MOV R1, #-1
+000F                   8     MAIN:
+000F 8013              9             JMP QUETPHIM
+0011 80FC             10             JMP MAIN
+0013                  11     CIN:
+0013 B8FF02           12             CJNE R0, #-1, CIN1
+0016 F8               13             MOV R0, A
+0017 22               14             RET
+0018                  15             CIN1:
+0018 F9               16             MOV R1, A
+0019 22               17             RET
+001A                  18     HIENTHI:
+001A 8A99             19             MOV SBUF, R2
+001C 3099FD           20             JNB TI, $
+001F C299             21             CLR TI
+0021 3173             22             CALL DELAY
+0023 22               23             RET
+0024                  24     QUETPHIM:
+0024 75A0FE           25             MOV P2, # 11111110B
+0027 30A45F           26             JNB P2.4, SO_7
+002A 30A55E           27             JNB P2.5, SO_8
+002D 30A661           28             JNB P2.6, SO_9
+0030 30A766           29             JNB P2.7, CHIA
+                      30             
+0033 75A0FD           31             MOV P2, # 11111101B
+0036 30A44A           32             JNB P2.4, SO_4
+0039 30A549           33             JNB P2.5, SO_5
+003C 30A648           34             JNB P2.6, SO_6
+003F 30A755           35             JNB P2.7, NHAN
+                      36             
+0042 75A0FB           37             MOV P2, # 11111011B
+0045 30A435           38             JNB P2.4, SO_1
+0048 30A534           39             JNB P2.5, SO_2
+004B 30A633           40             JNB P2.6, SO_3
+004E 30A744           41             JNB P2.7, TRU
+                      42             
+0051 75A0F7           43             MOV P2, # 11110111B
+0054 30A446           44             JNB P2.4, RESET
+0057 30A521           45             JNB P2.5, SO_0
+005A 30A63E           46             JNB P2.6, BANG
+005D 30A733           47             JNB P2.7, CONG
+0060 80AD             48             JMP MAIN
+0062                  49     TACHSO:
+0062 75F00A           50             MOV B, #10
+0065 84               51             DIV AB
+0066 2430             52             ADD A ,#30H
+0068 F599             53             MOV SBUF, A
+006A 3099FD           54             JNB TI, $
+006D C299             55             CLR TI
+006F E5F0             56             MOV A, B
+0071 2430             57             ADD A, #30H
+A51 MACRO ASSEMBLER  MAIN                                                                 05/29/2023 10:40:20 PAGE     2
+
+0073 F599             58             MOV SBUF, A
+0075 3099FD           59             JNB TI, $
+0078 C299             60             CLR TI
+007A 22               61             RET
+007B                  62     SO_0:
+007B 8022             63             JMP SO_01
+007D                  64     SO_1:
+007D 802A             65             JMP SO_11
+007F                  66     SO_2:
+007F 8032             67             JMP SO_21
+0081                  68     SO_3:
+0081 803A             69             JMP SO_31
+0083                  70     SO_4:
+0083 8042             71             JMP SO_41
+0085                  72     SO_5:
+0085 804A             73             JMP SO_51
+0087                  74     SO_6:
+0087 8052             75             JMP SO_61
+0089                  76     SO_7:
+0089 805A             77             JMP SO_71
+008B                  78     SO_8:
+008B 7408             79             MOV A, #8
+008D 1113             80             CALL CIN
+008F 805E             81             JMP SO_81
+0091                  82     SO_9:
+0091 8066             83             JMP SO_91
+0093                  84     CONG:
+0093 806E             85             JMP CONG1
+0095                  86     TRU:
+0095 8074             87             JMP TRU1
+0097                  88     NHAN:
+0097 807A             89             JMP NHAN1
+0099                  90     CHIA:
+0099 211B             91             JMP CHIA1
+009B                  92     BANG:
+009B 2123             93             JMP BANG1
+009D                  94     RESET:
+009D 2165             95             JMP RESET1
+009F                  96     SO_01:
+009F 7400             97             MOV A, #0
+00A1 1113             98             CALL CIN
+00A3 7A30             99             MOV R2, #'0'
+00A5 111A            100             CALL HIENTHI
+00A7 010F            101             JMP MAIN
+00A9                 102     SO_11:
+00A9 7401            103             MOV A, #1
+00AB 1113            104             CALL CIN
+00AD 7A31            105             MOV R2, #'1'
+00AF 111A            106             CALL HIENTHI
+00B1 010F            107             JMP MAIN
+00B3                 108     SO_21:
+00B3 7402            109             MOV A, #2
+00B5 1113            110             CALL CIN
+00B7 7A32            111             MOV R2, #'2'
+00B9 111A            112             CALL HIENTHI
+00BB 010F            113             JMP MAIN
+00BD                 114     SO_31:
+00BD 7403            115             MOV A, #3
+00BF 1113            116             CALL CIN
+00C1 7A33            117             MOV R2, #'3'
+00C3 111A            118             CALL HIENTHI
+00C5 010F            119             JMP MAIN
+00C7                 120     SO_41:
+00C7 7404            121             MOV A, #4
+00C9 1113            122             CALL CIN
+00CB 7A34            123             MOV R2, #'4'
+A51 MACRO ASSEMBLER  MAIN                                                                 05/29/2023 10:40:20 PAGE     3
+
+00CD 111A            124             CALL HIENTHI
+00CF 010F            125             JMP MAIN
+00D1                 126     SO_51:
+00D1 7405            127             MOV A, #5
+00D3 1113            128             CALL CIN
+00D5 7A35            129             MOV R2, #'5'
+00D7 111A            130             CALL HIENTHI
+00D9 010F            131             JMP MAIN
+00DB                 132     SO_61:
+00DB 7406            133             MOV A, #6
+00DD 1113            134             CALL CIN
+00DF 7A36            135             MOV R2, #'6'
+00E1 111A            136             CALL HIENTHI
+00E3 010F            137             JMP MAIN
+00E5                 138     SO_71:
+00E5 7407            139             MOV A, #7
+00E7 1113            140             CALL CIN
+00E9 7A37            141             MOV R2, #'7'
+00EB 111A            142             CALL HIENTHI
+00ED 010F            143             JMP MAIN
+00EF                 144     SO_81:
+00EF 7408            145             MOV A, #8
+00F1 1113            146             CALL CIN
+00F3 7A38            147             MOV R2, #'8'
+00F5 111A            148             CALL HIENTHI
+00F7 010F            149             JMP MAIN
+00F9                 150     SO_91:
+00F9 7409            151             MOV A, #9
+00FB 1113            152             CALL CIN
+00FD 7A39            153             MOV R2, #'9'
+00FF 111A            154             CALL HIENTHI
+0101 010F            155             JMP MAIN
+0103                 156     CONG1:
+0103 7B2B            157             MOV R3, #'+'
+0105 7A2B            158             MOV R2, #'+'
+0107 111A            159             CALL HIENTHI
+0109 010F            160             JMP MAIN
+010B                 161     TRU1:
+010B 7B2D            162             MOV R3, #'-'
+010D 7A2D            163             MOV R2, #'-'
+010F 111A            164             CALL HIENTHI
+0111 010F            165             JMP MAIN
+0113                 166     NHAN1:
+0113 7B2A            167             MOV R3, #'*'
+0115 7A2A            168             MOV R2, #'*'
+0117 111A            169             CALL HIENTHI
+0119 010F            170             JMP MAIN
+011B                 171     CHIA1:
+011B 7B2F            172             MOV R3, #'/'
+011D 7A2F            173             MOV R2, #'/'
+011F 111A            174             CALL HIENTHI
+0121 010F            175             JMP MAIN
+0123                 176     BANG1:
+0123 7A3D            177             MOV R2, #'='
+0125 111A            178             CALL HIENTHI
+0127 3129            179             CALL RESULT
+0129                 180     RESULT:
+0129 E8              181             MOV A, R0
+012A BB2B07          182             CJNE R3, #'+', SUB
+012D 29              183             ADD A, R1 
+012E F599            184             MOV SBUF, A
+0130 1162            185             CALL TACHSO
+0132 010F            186             JMP MAIN
+0134                 187             SUB:
+0134 BB2D07          188             CJNE R3, #'-', MULTI
+0137 99              189             SUBB A, R1 
+A51 MACRO ASSEMBLER  MAIN                                                                 05/29/2023 10:40:20 PAGE     4
+
+0138 F599            190             MOV SBUF, A
+013A 1162            191             CALL TACHSO
+013C 010F            192             JMP MAIN
+013E                 193             MULTI:
+013E BB2A09          194             CJNE R3, #'*', DIVI
+0141 89F0            195             MOV B, R1
+0143 A4              196             MUL AB
+0144 F599            197             MOV SBUF, A
+0146 1162            198             CALL TACHSO
+0148 010F            199             JMP MAIN
+014A                 200             DIVI:
+014A BB2F12          201             CJNE R3, #'/', OUT
+014D B90006          202             CJNE R1, #0, DIVI1
+0150 7A45            203             MOV R2, #'E'
+0152 111A            204             CALL HIENTHI
+0154 010F            205             JMP MAIN
+0156                 206             DIVI1:
+0156 89F0            207             MOV B, R1
+0158 84              208             DIV AB
+0159 F599            209             MOV SBUF, A
+015B 1162            210             CALL TACHSO
+015D 010F            211             JMP MAIN
+015F                 212             OUT:
+015F F599            213             MOV SBUF, A
+0161 1162            214             CALL TACHSO
+0163 010F            215             JMP MAIN
+0165                 216     RESET1:
+0165 78FF            217             MOV R0, #-1
+0167 79FF            218             MOV R1, #-1
+0169 7AFE            219             MOV R2, #254
+016B 111A            220             CALL HIENTHI
+016D 7A01            221             MOV R2, #1
+016F 111A            222             CALL HIENTHI
+0171 010F            223             JMP MAIN
+0173                 224     DELAY:
+0173 7D02            225             MOV R5, #2
+0175                 226     DELAY1:
+0175 7EFF            227             MOV R6, #255
+0177                 228     DELAY2:
+0177 7FFF            229             MOV R7, #255
+0179 DFFE            230             DJNZ R7, $
+017B DEFA            231             DJNZ R6, DELAY2
+017D DDF6            232             DJNZ R5, DELAY1
+017F 22              233             RET
+                     234     END
+A51 MACRO ASSEMBLER  MAIN                                                                 05/29/2023 10:40:20 PAGE     5
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+BANG . . . . . . .  C ADDR   009BH   A   
+BANG1. . . . . . .  C ADDR   0123H   A   
+CHIA . . . . . . .  C ADDR   0099H   A   
+CHIA1. . . . . . .  C ADDR   011BH   A   
+CIN. . . . . . . .  C ADDR   0013H   A   
+CIN1 . . . . . . .  C ADDR   0018H   A   
+CONG . . . . . . .  C ADDR   0093H   A   
+CONG1. . . . . . .  C ADDR   0103H   A   
+DELAY. . . . . . .  C ADDR   0173H   A   
+DELAY1 . . . . . .  C ADDR   0175H   A   
+DELAY2 . . . . . .  C ADDR   0177H   A   
+DIVI . . . . . . .  C ADDR   014AH   A   
+DIVI1. . . . . . .  C ADDR   0156H   A   
+HIENTHI. . . . . .  C ADDR   001AH   A   
+MAIN . . . . . . .  C ADDR   000FH   A   
+MULTI. . . . . . .  C ADDR   013EH   A   
+NHAN . . . . . . .  C ADDR   0097H   A   
+NHAN1. . . . . . .  C ADDR   0113H   A   
+OUT. . . . . . . .  C ADDR   015FH   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+QUETPHIM . . . . .  C ADDR   0024H   A   
+RESET. . . . . . .  C ADDR   009DH   A   
+RESET1 . . . . . .  C ADDR   0165H   A   
+RESULT . . . . . .  C ADDR   0129H   A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+SO_0 . . . . . . .  C ADDR   007BH   A   
+SO_01. . . . . . .  C ADDR   009FH   A   
+SO_1 . . . . . . .  C ADDR   007DH   A   
+SO_11. . . . . . .  C ADDR   00A9H   A   
+SO_2 . . . . . . .  C ADDR   007FH   A   
+SO_21. . . . . . .  C ADDR   00B3H   A   
+SO_3 . . . . . . .  C ADDR   0081H   A   
+SO_31. . . . . . .  C ADDR   00BDH   A   
+SO_4 . . . . . . .  C ADDR   0083H   A   
+SO_41. . . . . . .  C ADDR   00C7H   A   
+SO_5 . . . . . . .  C ADDR   0085H   A   
+SO_51. . . . . . .  C ADDR   00D1H   A   
+SO_6 . . . . . . .  C ADDR   0087H   A   
+SO_61. . . . . . .  C ADDR   00DBH   A   
+SO_7 . . . . . . .  C ADDR   0089H   A   
+SO_71. . . . . . .  C ADDR   00E5H   A   
+SO_8 . . . . . . .  C ADDR   008BH   A   
+SO_81. . . . . . .  C ADDR   00EFH   A   
+SO_9 . . . . . . .  C ADDR   0091H   A   
+SO_91. . . . . . .  C ADDR   00F9H   A   
+SUB. . . . . . . .  C ADDR   0134H   A   
+TACHSO . . . . . .  C ADDR   0062H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+TRU. . . . . . . .  C ADDR   0095H   A   
+TRU1 . . . . . . .  C ADDR   010BH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
+A51 MACRO ASSEMBLER  MAIN                                                                 05/29/2023 10:40:20 PAGE     6
+

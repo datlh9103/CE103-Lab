@@ -1,0 +1,1 @@
+"Main.asm" SET (SMALL) DEBUG PRINT(.\Listings\Main.lst) OBJECT(.\Objects\Main.obj) EP
